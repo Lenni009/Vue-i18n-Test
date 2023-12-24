@@ -16,7 +16,7 @@ type Leaves<ObjectType> = ObjectType extends Record<string, unknown>
     { [Key in keyof ObjectType]-?: Join<Key, Leaves<ObjectType[Key]>> }[keyof ObjectType]
   : '';
 
-export type I18NLeaves = Leaves<typeof messages['de']>;
+export type I18NLeaves = Leaves<typeof messages['Deutsch']>;
 
 // This function adds type safety to the i18n t function.
 export function useI18n() {

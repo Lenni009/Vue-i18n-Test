@@ -1,16 +1,26 @@
 <script setup lang="ts">
-import { useI18n } from './hooks/useI18n';
+import { watch, ref } from "vue";
+import { useI18n } from "./hooks/useI18n";
 
-	const {t, locale} = useI18n();
+const { t, locale } = useI18n();
 
-	function changeLocale() {
-		const currentLocale = locale.value;
-		locale.value = currentLocale === 'de' ? 'en' : 'de';
-	}
+type Locales = typeof locale.value;
+
+const selectedLocale = ref<Locales>('Deutsch');
+
+watch(selectedLocale, (newVal) => locale.value = newVal);
 </script>
 
 <template>
-  <div>{{ t('helloWorld.hello') }}</div>
+  <div>{{ t("helloWorld.hello") }}</div>
 
-  <button @click="changeLocale">change locale</button>
+  <select v-model="selectedLocale">
+    <option
+      v-for="locale in $i18n.availableLocales"
+      :key="`locale-${locale}`"
+      :value="locale"
+    >
+      {{ locale }}
+    </option>
+  </select>
 </template>
