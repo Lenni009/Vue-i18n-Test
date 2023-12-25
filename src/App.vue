@@ -8,7 +8,10 @@ type Locales = typeof locale.value;
 
 const selectedLocale = ref<Locales>('Deutsch');
 
-watch(selectedLocale, (newVal) => locale.value = newVal);
+watch(selectedLocale, (newVal) => {
+	locale.value = newVal
+	localStorage.setItem('lang', newVal);
+	});
 </script>
 
 <template>

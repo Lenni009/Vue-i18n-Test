@@ -8,7 +8,7 @@ const messages = {
 };
 
 const i18n = createI18n({
-  locale: 'de',
+  locale: localStorage.getItem('lang') ?? 'en',
   legacy: false,
   messages,
 });
