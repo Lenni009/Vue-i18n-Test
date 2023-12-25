@@ -6,12 +6,12 @@ const { t, locale } = useI18n();
 
 type Locales = typeof locale.value;
 
-const selectedLocale = ref<Locales>('Deutsch');
+const selectedLocale = ref<Locales>(locale.value);
 
 watch(selectedLocale, (newVal) => {
-	locale.value = newVal
-	localStorage.setItem('lang', newVal);
-	});
+  locale.value = newVal;
+  localStorage.setItem("lang", newVal);
+});
 </script>
 
 <template>

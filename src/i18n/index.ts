@@ -3,14 +3,17 @@ import Deutsch from './de';
 import English from './en';
 
 const messages = {
-  Deutsch,
-  English,
+	Deutsch,
+	English,
 };
 
+const preferredLang = navigator.language.replace('de', 'Deutsch').replace('en', 'English');
+export const localStorageLang = localStorage.getItem('lang') ?? Object.keys(messages).includes(preferredLang) ? preferredLang : 'English';
+
 const i18n = createI18n({
-  locale: localStorage.getItem('lang') ?? 'en',
-  legacy: false,
-  messages,
+	locale: localStorageLang,
+	legacy: false,
+	messages,
 });
 
 export { i18n, messages };
