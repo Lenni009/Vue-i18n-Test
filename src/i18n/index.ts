@@ -7,11 +7,12 @@ const messages = {
 	English,
 };
 
-const preferredLang = navigator.language.replace('de', 'Deutsch').replace('en', 'English');
-export const localStorageLang = localStorage.getItem('lang') ?? Object.keys(messages).includes(preferredLang) ? preferredLang : 'English';
+const userLang = navigator.language.replace('de', 'Deutsch').replace('en', 'English');
+const localStorageLang = localStorage.getItem('lang');
+export const preferredLang = localStorageLang ?? (Object.keys(messages).includes(userLang) ? userLang : 'English');
 
 const i18n = createI18n({
-	locale: localStorageLang,
+	locale: preferredLang,
 	legacy: false,
 	messages,
 });
